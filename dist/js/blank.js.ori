@@ -1,0 +1,52 @@
+var effects = ["blind", "bounce", "clip", "drop", "explode", "fade", "fold", "highlight", "puff", "pulsate", "shake", "slide"];
+var userCards = [];
+var users = [];
+
+$.getJSON( "https://api.foursquare.com/v2/venues/5836ea17ba883710b207fd37/herenow?oauth_token=34XFV5UEBGTRN0J2LDC24FHEDNM0OS4ELV52G1I20XMXNGMT&v=20180914", function( data ) {
+    var foursquareApi = JSON.parse(JSON.stringify(data));
+
+    $.each( foursquareApi.response.hereNow.items, function( key, value ) {
+        if(key > 0 && key < 7){
+            var tempUser = [];
+            var user = value.user;
+            var photo = user.photo;
+            tempUser.img = photo.prefix+"800x800"+photo.suffix;
+            tempUser.fullName = user.firstName +" " +user.lastName;
+
+            users.push(tempUser);
+            userCards.push("<div class=\"card card-widget widget-user-2\">\n" +
+                "              <!-- Add the bg color to the header using any of the bg-* classes -->\n" +
+                "              <div class=\"widget-user-header bg-warning\">\n" +
+                "                <div class=\"widget-user-image\">\n" +
+                "                  <img class=\"img-circle elevation-2\" src=\""+tempUser.img+"\" alt=\"User Avatar\">\n" +
+                "                </div>\n" +
+                "                <h5 class=\"widget-user-desc\">"+tempUser.fullName+"</h5>\n" +
+                "              </div>\n" +
+                "            </div>");
+        }
+    });
+
+    $( "#cards").append( userCards );
+
+    setInterval(explode, 5000);
+});
+
+var writeMainUser = function (user) {
+    $("#cardName").html(user.fullName);
+    $("#cardImg").attr('src', user.img);
+}
+
+var getRandomInt = function(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+var callback = function() {
+        $( "#welcomeDiv" ).removeAttr( "style" ).fadeIn();
+
+};
+
+function explode() {
+    $( "#welcomeDiv" ).effect( effects[getRandomInt(12)] , null, 500, callback );
+    var user = users[getRandomInt(7)];
+    writeMainUser(user);
+}
