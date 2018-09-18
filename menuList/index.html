@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Swarm Check In </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
+</head>
+<body>
+<div class="row">
+    <!-- Left col -->
+    <section class="col-lg-3 connectedSortable ui-sortable">
+        <div id="cards" />
+    </section>
+    <!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-9 connectedSortable ui-sortable">
+
+        <!-- solid sales graph -->
+        <div class="card bg-warning-gradient" style="height: 99vh;">
+            <div class="card-header no-border ui-sortable-handle" style="cursor: move;">
+                <h1><img src="../dist/img/brand.png" class="img-circle elevation-2" style="height: 75px; width: 75px;"/> Star Bucks Rezerve Alsancak</h1>
+            </div>
+            <div class="card-body h-75  text-center" id="menuDiv">
+                        <img id="img" class="mw-100 img-rounded">
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer bg-transparent">
+                <div class="row">
+                    <div class="col-1">
+                        <img src="../dist/img/swarm.png" class="img-rounded elevation-2" style="height: 50px; width: 100px;">
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <marquee scrollamount="1"
+                                 scrolldelay="10"
+                                 truespeed><span style="font-size: 35px;">Swarm'da Check In Yap Sen de Bu Alanda Görün</span></marquee>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- right col -->
+</div>
+<script src="../dist/js/electron.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<script src="../dist/js/users.js"></script>
+<script src="../dist/js/menuList.js"></script>
+
+
+<script src="../dist/js/jquery-ui.js"></script>
+</body>
+</html>
