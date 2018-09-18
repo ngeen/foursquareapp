@@ -9,28 +9,6 @@
 	(factory((global.adminlte = {})));
 }(this, (function (exports) { 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
-
-
-
-
-
-
-
-
-
-
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
 /**
  * --------------------------------------------
  * AdminLTE ControlSidebar.js
@@ -38,27 +16,27 @@ var classCallCheck = function (instance, Constructor) {
  * --------------------------------------------
  */
 
-var ControlSidebar = function ($) {
+const ControlSidebar = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  var NAME = 'ControlSidebar';
-  var DATA_KEY = 'lte.control.sidebar';
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
-  var Selector = {
+  const NAME = 'ControlSidebar';
+  const DATA_KEY = 'lte.control.sidebar';
+  const JQUERY_NO_CONFLICT = $.fn[NAME];
+  const Selector = {
     CONTROL_SIDEBAR: '.control-sidebar',
     DATA_TOGGLE: '[data-widget="control-sidebar"]',
     MAIN_HEADER: '.main-header'
   };
 
-  var ClassName = {
+  const ClassName = {
     CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
     CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
   };
 
-  var Default = {
+  const Default = {
     slide: true
 
     /**
@@ -66,39 +44,36 @@ var ControlSidebar = function ($) {
      * ====================================================
      */
 
-  };
-  var ControlSidebar = function () {
-    function ControlSidebar(element, config) {
-      classCallCheck(this, ControlSidebar);
-
+  };class ControlSidebar {
+    constructor(element, config) {
       this._element = element;
       this._config = this._getConfig(config);
     }
 
     // Public
 
-    ControlSidebar.prototype.show = function show() {
+    show() {
       // Show the control sidebar
       if (this._config.slide) {
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
       } else {
         $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
       }
-    };
+    }
 
-    ControlSidebar.prototype.collapse = function collapse() {
+    collapse() {
       // Collapse the control sidebar
       if (this._config.slide) {
         $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
       } else {
         $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
       }
-    };
+    }
 
-    ControlSidebar.prototype.toggle = function toggle() {
+    toggle() {
       this._setMargin();
 
-      var shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+      const shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE);
       if (shouldOpen) {
         // Open the control sidebar
         this.show();
@@ -106,25 +81,25 @@ var ControlSidebar = function ($) {
         // Close the control sidebar
         this.collapse();
       }
-    };
+    }
 
     // Private
 
-    ControlSidebar.prototype._getConfig = function _getConfig(config) {
+    _getConfig(config) {
       return $.extend({}, Default, config);
-    };
+    }
 
-    ControlSidebar.prototype._setMargin = function _setMargin() {
+    _setMargin() {
       $(Selector.CONTROL_SIDEBAR).css({
         top: $(Selector.MAIN_HEADER).outerHeight()
       });
-    };
+    }
 
     // Static
 
-    ControlSidebar._jQueryInterface = function _jQueryInterface(operation) {
+    static _jQueryInterface(operation) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
+        let data = $(this).data(DATA_KEY);
 
         if (!data) {
           data = new ControlSidebar(this, $(this).data());
@@ -132,23 +107,19 @@ var ControlSidebar = function ($) {
         }
 
         if (data[operation] === 'undefined') {
-          throw new Error(operation + ' is not a function');
+          throw new Error(`${operation} is not a function`);
         }
 
         data[operation]();
       });
-    };
-
-    return ControlSidebar;
-  }();
+    }
+  }
 
   /**
    *
    * Data Api implementation
    * ====================================================
    */
-
-
   $(document).on('click', Selector.DATA_TOGGLE, function (event) {
     event.preventDefault();
 
@@ -168,7 +139,7 @@ var ControlSidebar = function ($) {
   };
 
   return ControlSidebar;
-}(jQuery);
+})(jQuery);
 
 /**
  * --------------------------------------------
@@ -177,17 +148,17 @@ var ControlSidebar = function ($) {
  * --------------------------------------------
  */
 
-var Layout = function ($) {
+const Layout = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  var NAME = 'Layout';
-  var DATA_KEY = 'lte.layout';
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  const NAME = 'Layout';
+  const DATA_KEY = 'lte.layout';
+  const JQUERY_NO_CONFLICT = $.fn[NAME];
 
-  var Selector = {
+  const Selector = {
     SIDEBAR: '.main-sidebar',
     HEADER: '.main-header',
     CONTENT: '.content-wrapper',
@@ -198,7 +169,7 @@ var Layout = function ($) {
     FOOTER: '.main-footer'
   };
 
-  var ClassName = {
+  const ClassName = {
     HOLD: 'hold-transition',
     SIDEBAR: 'main-sidebar',
     LAYOUT_FIXED: 'layout-fixed'
@@ -208,11 +179,8 @@ var Layout = function ($) {
      * ====================================================
      */
 
-  };
-  var Layout = function () {
-    function Layout(element) {
-      classCallCheck(this, Layout);
-
+  };class Layout {
+    constructor(element) {
       this._element = element;
 
       this._init();
@@ -220,58 +188,56 @@ var Layout = function ($) {
 
     // Public
 
-    Layout.prototype.fixLayoutHeight = function fixLayoutHeight() {
-      var heights = {
+    fixLayoutHeight() {
+      const heights = {
         window: $(window).height(),
         header: $(Selector.HEADER).outerHeight(),
         footer: $(Selector.FOOTER).outerHeight(),
         sidebar: $(Selector.SIDEBAR).height()
       };
-      var max = this._max(heights);
+      const max = this._max(heights);
 
       $(Selector.CONTENT).css('min-height', max - heights.header);
       $(Selector.SIDEBAR).css('min-height', max - heights.header);
-    };
+    }
 
     // Private
 
-    Layout.prototype._init = function _init() {
-      var _this = this;
-
+    _init() {
       // Enable transitions
       $('body').removeClass(ClassName.HOLD);
 
       // Activate layout height watcher
       this.fixLayoutHeight();
-      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
-        _this.fixLayoutHeight();
+      $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', () => {
+        this.fixLayoutHeight();
       });
 
-      $(window).resize(function () {
-        _this.fixLayoutHeight();
+      $(window).resize(() => {
+        this.fixLayoutHeight();
       });
 
       $('body, html').css('height', 'auto');
-    };
+    }
 
-    Layout.prototype._max = function _max(numbers) {
+    _max(numbers) {
       // Calculate the maximum number in a list
-      var max = 0;
+      let max = 0;
 
-      Object.keys(numbers).forEach(function (key) {
+      Object.keys(numbers).forEach(key => {
         if (numbers[key] > max) {
           max = numbers[key];
         }
       });
 
       return max;
-    };
+    }
 
     // Static
 
-    Layout._jQueryInterface = function _jQueryInterface(operation) {
+    static _jQueryInterface(operation) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
+        let data = $(this).data(DATA_KEY);
 
         if (!data) {
           data = new Layout(this);
@@ -282,18 +248,14 @@ var Layout = function ($) {
           data[operation]();
         }
       });
-    };
-
-    return Layout;
-  }();
+    }
+  }
 
   /**
    * Data API
    * ====================================================
    */
-
-
-  $(window).on('load', function () {
+  $(window).on('load', () => {
     Layout._jQueryInterface.call($('body'));
   });
 
@@ -310,7 +272,7 @@ var Layout = function ($) {
   };
 
   return Layout;
-}(jQuery);
+})(jQuery);
 
 /**
  * --------------------------------------------
@@ -319,27 +281,27 @@ var Layout = function ($) {
  * --------------------------------------------
  */
 
-var PushMenu = function ($) {
+const PushMenu = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  var NAME = 'PushMenu';
-  var DATA_KEY = 'lte.pushmenu';
-  var EVENT_KEY = '.' + DATA_KEY;
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  const NAME = 'PushMenu';
+  const DATA_KEY = 'lte.pushmenu';
+  const EVENT_KEY = `.${DATA_KEY}`;
+  const JQUERY_NO_CONFLICT = $.fn[NAME];
 
-  var Event = {
-    COLLAPSED: 'collapsed' + EVENT_KEY,
-    SHOWN: 'shown' + EVENT_KEY
+  const Event = {
+    COLLAPSED: `collapsed${EVENT_KEY}`,
+    SHOWN: `shown${EVENT_KEY}`
   };
 
-  var Default = {
+  const Default = {
     screenCollapseSize: 768
   };
 
-  var Selector = {
+  const Selector = {
     TOGGLE_BUTTON: '[data-widget="pushmenu"]',
     SIDEBAR_MINI: '.sidebar-mini',
     SIDEBAR_COLLAPSED: '.sidebar-collapse',
@@ -348,7 +310,7 @@ var PushMenu = function ($) {
     WRAPPER: '.wrapper'
   };
 
-  var ClassName = {
+  const ClassName = {
     SIDEBAR_OPEN: 'sidebar-open',
     COLLAPSED: 'sidebar-collapse',
     OPEN: 'sidebar-open',
@@ -359,11 +321,8 @@ var PushMenu = function ($) {
      * ====================================================
      */
 
-  };
-  var PushMenu = function () {
-    function PushMenu(element, options) {
-      classCallCheck(this, PushMenu);
-
+  };class PushMenu {
+    constructor(element, options) {
       this._element = element;
       this._options = $.extend({}, Default, options);
 
@@ -374,22 +333,22 @@ var PushMenu = function ($) {
 
     // Public
 
-    PushMenu.prototype.show = function show() {
+    show() {
       $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
 
-      var shownEvent = $.Event(Event.SHOWN);
+      const shownEvent = $.Event(Event.SHOWN);
       $(this._element).trigger(shownEvent);
-    };
+    }
 
-    PushMenu.prototype.collapse = function collapse() {
+    collapse() {
       $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
 
-      var collapsedEvent = $.Event(Event.COLLAPSED);
+      const collapsedEvent = $.Event(Event.COLLAPSED);
       $(this._element).trigger(collapsedEvent);
-    };
+    }
 
-    PushMenu.prototype.toggle = function toggle() {
-      var isShown = void 0;
+    toggle() {
+      let isShown;
       if ($(window).width() >= this._options.screenCollapseSize) {
         isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
       } else {
@@ -401,30 +360,26 @@ var PushMenu = function ($) {
       } else {
         this.show();
       }
-    };
+    }
 
     // Private
-
-
-    PushMenu.prototype._addOverlay = function _addOverlay() {
-      var _this = this;
-
-      var overlay = $('<div />', {
+    _addOverlay() {
+      const overlay = $('<div />', {
         id: 'sidebar-overlay'
       });
 
-      overlay.on('click', function () {
-        _this.collapse();
+      overlay.on('click', () => {
+        this.collapse();
       });
 
       $(Selector.WRAPPER).append(overlay);
-    };
+    }
 
     // Static
 
-    PushMenu._jQueryInterface = function _jQueryInterface(operation) {
+    static _jQueryInterface(operation) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
+        let data = $(this).data(DATA_KEY);
 
         if (!data) {
           data = new PushMenu(this);
@@ -435,20 +390,18 @@ var PushMenu = function ($) {
           data[operation]();
         }
       });
-    };
-
-    return PushMenu;
-  }();
+    }
+  }
 
   /**
    * Data API
    * ====================================================
    */
 
-  $(document).on('click', Selector.TOGGLE_BUTTON, function (event) {
+  $(document).on('click', Selector.TOGGLE_BUTTON, event => {
     event.preventDefault();
 
-    var button = event.currentTarget;
+    let button = event.currentTarget;
 
     if ($(button).data('widget') !== 'pushmenu') {
       button = $(button).closest(Selector.TOGGLE_BUTTON);
@@ -470,7 +423,7 @@ var PushMenu = function ($) {
   };
 
   return PushMenu;
-}(jQuery);
+})(jQuery);
 
 /**
  * --------------------------------------------
@@ -479,25 +432,25 @@ var PushMenu = function ($) {
  * --------------------------------------------
  */
 
-var Treeview = function ($) {
+const Treeview = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  var NAME = 'Treeview';
-  var DATA_KEY = 'lte.treeview';
-  var EVENT_KEY = '.' + DATA_KEY;
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  const NAME = 'Treeview';
+  const DATA_KEY = 'lte.treeview';
+  const EVENT_KEY = `.${DATA_KEY}`;
+  const JQUERY_NO_CONFLICT = $.fn[NAME];
 
-  var Event = {
-    SELECTED: 'selected' + EVENT_KEY,
-    EXPANDED: 'expanded' + EVENT_KEY,
-    COLLAPSED: 'collapsed' + EVENT_KEY,
-    LOAD_DATA_API: 'load' + EVENT_KEY
+  const Event = {
+    SELECTED: `selected${EVENT_KEY}`,
+    EXPANDED: `expanded${EVENT_KEY}`,
+    COLLAPSED: `collapsed${EVENT_KEY}`,
+    LOAD_DATA_API: `load${EVENT_KEY}`
   };
 
-  var Selector = {
+  const Selector = {
     LI: '.nav-item',
     LINK: '.nav-link',
     TREEVIEW_MENU: '.nav-treeview',
@@ -505,15 +458,15 @@ var Treeview = function ($) {
     DATA_WIDGET: '[data-widget="treeview"]'
   };
 
-  var ClassName = {
+  const ClassName = {
     LI: 'nav-item',
     LINK: 'nav-link',
     TREEVIEW_MENU: 'nav-treeview',
     OPEN: 'menu-open'
   };
 
-  var Default = {
-    trigger: Selector.DATA_WIDGET + ' ' + Selector.LINK,
+  const Default = {
+    trigger: `${Selector.DATA_WIDGET} ${Selector.LINK}`,
     animationSpeed: 300,
     accordion: true
 
@@ -521,54 +474,47 @@ var Treeview = function ($) {
      * Class Definition
      * ====================================================
      */
-  };
-  var Treeview = function () {
-    function Treeview(element, config) {
-      classCallCheck(this, Treeview);
-
+  };class Treeview {
+    constructor(element, config) {
       this._config = config;
       this._element = element;
     }
 
     // Public
 
-    Treeview.prototype.init = function init() {
+    init() {
       this._setupListeners();
-    };
+    }
 
-    Treeview.prototype.expand = function expand(treeviewMenu, parentLi) {
-      var _this = this;
-
-      var expandedEvent = $.Event(Event.EXPANDED);
+    expand(treeviewMenu, parentLi) {
+      const expandedEvent = $.Event(Event.EXPANDED);
 
       if (this._config.accordion) {
-        var openMenuLi = parentLi.siblings(Selector.OPEN).first();
-        var openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
+        const openMenuLi = parentLi.siblings(Selector.OPEN).first();
+        const openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
         this.collapse(openTreeview, openMenuLi);
       }
 
-      treeviewMenu.slideDown(this._config.animationSpeed, function () {
+      treeviewMenu.slideDown(this._config.animationSpeed, () => {
         parentLi.addClass(ClassName.OPEN);
-        $(_this._element).trigger(expandedEvent);
+        $(this._element).trigger(expandedEvent);
       });
-    };
+    }
 
-    Treeview.prototype.collapse = function collapse(treeviewMenu, parentLi) {
-      var _this2 = this;
+    collapse(treeviewMenu, parentLi) {
+      const collapsedEvent = $.Event(Event.COLLAPSED);
 
-      var collapsedEvent = $.Event(Event.COLLAPSED);
-
-      treeviewMenu.slideUp(this._config.animationSpeed, function () {
+      treeviewMenu.slideUp(this._config.animationSpeed, () => {
         parentLi.removeClass(ClassName.OPEN);
-        $(_this2._element).trigger(collapsedEvent);
-        treeviewMenu.find(Selector.OPEN + ' > ' + Selector.TREEVIEW_MENU).slideUp();
+        $(this._element).trigger(collapsedEvent);
+        treeviewMenu.find(`${Selector.OPEN} > ${Selector.TREEVIEW_MENU}`).slideUp();
         treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN);
       });
-    };
+    }
 
-    Treeview.prototype.toggle = function toggle(event) {
-      var $relativeTarget = $(event.currentTarget);
-      var treeviewMenu = $relativeTarget.next();
+    toggle(event) {
+      const $relativeTarget = $(event.currentTarget);
+      const treeviewMenu = $relativeTarget.next();
 
       if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
         return;
@@ -576,32 +522,30 @@ var Treeview = function ($) {
 
       event.preventDefault();
 
-      var parentLi = $relativeTarget.parents(Selector.LI).first();
-      var isOpen = parentLi.hasClass(ClassName.OPEN);
+      const parentLi = $relativeTarget.parents(Selector.LI).first();
+      const isOpen = parentLi.hasClass(ClassName.OPEN);
 
       if (isOpen) {
         this.collapse($(treeviewMenu), parentLi);
       } else {
         this.expand($(treeviewMenu), parentLi);
       }
-    };
+    }
 
     // Private
 
-    Treeview.prototype._setupListeners = function _setupListeners() {
-      var _this3 = this;
-
-      $(document).on('click', this._config.trigger, function (event) {
-        _this3.toggle(event);
+    _setupListeners() {
+      $(document).on('click', this._config.trigger, event => {
+        this.toggle(event);
       });
-    };
+    }
 
     // Static
 
-    Treeview._jQueryInterface = function _jQueryInterface(config) {
+    static _jQueryInterface(config) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
-        var _config = $.extend({}, Default, $(this).data());
+        let data = $(this).data(DATA_KEY);
+        const _config = $.extend({}, Default, $(this).data());
 
         if (!data) {
           data = new Treeview($(this), _config);
@@ -612,17 +556,15 @@ var Treeview = function ($) {
           data[config]();
         }
       });
-    };
-
-    return Treeview;
-  }();
+    }
+  }
 
   /**
    * Data API
    * ====================================================
    */
 
-  $(window).on(Event.LOAD_DATA_API, function () {
+  $(window).on(Event.LOAD_DATA_API, () => {
     $(Selector.DATA_WIDGET).each(function () {
       Treeview._jQueryInterface.call($(this), 'init');
     });
@@ -641,7 +583,7 @@ var Treeview = function ($) {
   };
 
   return Treeview;
-}(jQuery);
+})(jQuery);
 
 /**
  * --------------------------------------------
@@ -650,24 +592,24 @@ var Treeview = function ($) {
  * --------------------------------------------
  */
 
-var Widget = function ($) {
+const Widget = ($ => {
   /**
    * Constants
    * ====================================================
    */
 
-  var NAME = 'Widget';
-  var DATA_KEY = 'lte.widget';
-  var EVENT_KEY = '.' + DATA_KEY;
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  const NAME = 'Widget';
+  const DATA_KEY = 'lte.widget';
+  const EVENT_KEY = `.${DATA_KEY}`;
+  const JQUERY_NO_CONFLICT = $.fn[NAME];
 
-  var Event = {
-    EXPANDED: 'expanded' + EVENT_KEY,
-    COLLAPSED: 'collapsed' + EVENT_KEY,
-    REMOVED: 'removed' + EVENT_KEY
+  const Event = {
+    EXPANDED: `expanded${EVENT_KEY}`,
+    COLLAPSED: `collapsed${EVENT_KEY}`,
+    REMOVED: `removed${EVENT_KEY}`
   };
 
-  var Selector = {
+  const Selector = {
     DATA_REMOVE: '[data-widget="remove"]',
     DATA_COLLAPSE: '[data-widget="collapse"]',
     CARD: '.card',
@@ -677,87 +619,79 @@ var Widget = function ($) {
     COLLAPSED: '.collapsed-card'
   };
 
-  var ClassName = {
+  const ClassName = {
     COLLAPSED: 'collapsed-card'
   };
 
-  var Default = {
+  const Default = {
     animationSpeed: 'normal',
     collapseTrigger: Selector.DATA_COLLAPSE,
     removeTrigger: Selector.DATA_REMOVE
   };
 
-  var Widget = function () {
-    function Widget(element, settings) {
-      classCallCheck(this, Widget);
-
+  class Widget {
+    constructor(element, settings) {
       this._element = element;
       this._parent = element.parents(Selector.CARD).first();
       this._settings = $.extend({}, Default, settings);
     }
 
-    Widget.prototype.collapse = function collapse() {
-      var _this = this;
-
-      this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
-        _this._parent.addClass(ClassName.COLLAPSED);
+    collapse() {
+      this._parent.children(`${Selector.CARD_BODY}, ${Selector.CARD_FOOTER}`).slideUp(this._settings.animationSpeed, () => {
+        this._parent.addClass(ClassName.COLLAPSED);
       });
 
-      var collapsed = $.Event(Event.COLLAPSED);
+      const collapsed = $.Event(Event.COLLAPSED);
 
       this._element.trigger(collapsed, this._parent);
-    };
+    }
 
-    Widget.prototype.expand = function expand() {
-      var _this2 = this;
-
-      this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
-        _this2._parent.removeClass(ClassName.COLLAPSED);
+    expand() {
+      this._parent.children(`${Selector.CARD_BODY}, ${Selector.CARD_FOOTER}`).slideDown(this._settings.animationSpeed, () => {
+        this._parent.removeClass(ClassName.COLLAPSED);
       });
 
-      var expanded = $.Event(Event.EXPANDED);
+      const expanded = $.Event(Event.EXPANDED);
 
       this._element.trigger(expanded, this._parent);
-    };
+    }
 
-    Widget.prototype.remove = function remove() {
+    remove() {
       this._parent.slideUp();
 
-      var removed = $.Event(Event.REMOVED);
+      const removed = $.Event(Event.REMOVED);
 
       this._element.trigger(removed, this._parent);
-    };
+    }
 
-    Widget.prototype.toggle = function toggle() {
+    toggle() {
       if (this._parent.hasClass(ClassName.COLLAPSED)) {
         this.expand();
         return;
       }
 
       this.collapse();
-    };
+    }
 
     // Private
 
-    Widget.prototype._init = function _init(card) {
-      var _this3 = this;
-
+    _init(card) {
       this._parent = card;
 
-      $(this).find(this._settings.collapseTrigger).click(function () {
-        _this3.toggle();
+      $(this).find(this._settings.collapseTrigger).click(() => {
+        this.toggle();
       });
 
-      $(this).find(this._settings.removeTrigger).click(function () {
-        _this3.remove();
+      $(this).find(this._settings.removeTrigger).click(() => {
+        this.remove();
       });
-    };
+    }
 
     // Static
 
-    Widget._jQueryInterface = function _jQueryInterface(config) {
+    static _jQueryInterface(config) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
+        let data = $(this).data(DATA_KEY);
 
         if (!data) {
           data = new Widget($(this), data);
@@ -766,14 +700,12 @@ var Widget = function ($) {
 
         if (typeof config === 'string' && config.match(/remove|toggle/)) {
           data[config]();
-        } else if ((typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
+        } else if (typeof config === 'object') {
           data._init($(this));
         }
       });
-    };
-
-    return Widget;
-  }();
+    }
+  }
 
   /**
    * Data API
@@ -809,7 +741,7 @@ var Widget = function ($) {
   };
 
   return Widget;
-}(jQuery);
+})(jQuery);
 
 exports.ControlSidebar = ControlSidebar;
 exports.Layout = Layout;
