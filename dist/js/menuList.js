@@ -21,8 +21,8 @@ var timerId = setTimeout(function tick() {
     else
         electron.explode();
     tickCount++;
-    timerId = setTimeout(tick, 1000); // (*)
-}, 1000);
+    timerId = setTimeout(tick, 5000); // (*)
+}, 5000);
 
 users.checkIn(function () {
     users.getAllUsers(function () {

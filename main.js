@@ -24,7 +24,7 @@ function createWindow() {
     })
 
     mainWindow.setMenu(null)
-    mainWindow.setFullScreen(true)
+    //mainWindow.setFullScreen(true)
 }
 
 // This method will be called when Electron has finished
