@@ -9,8 +9,8 @@ var users = (function() {
     users.userCards = [];
     users.allUsers = [];
     users.orderCount = 7;
-    users.venueId = "5836ea17ba883710b207fd37";
-    users.authToken = "34XFV5UEBGTRN0J2LDC24FHEDNM0OS4ELV52G1I20XMXNGMT";
+    users.venueId;
+    users.authToken;
 
     users.checkIn = function (callback) {
         var url = "https://api.foursquare.com/v2/checkins/add";

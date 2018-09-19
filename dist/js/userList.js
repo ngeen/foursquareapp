@@ -1,5 +1,11 @@
 var tickCount = 1;
 
+$.getJSON( "https://social.oenginoz.com/buca.json", function( data ) {
+    var VenueJson = JSON.parse(JSON.stringify(data));
+    users.venueId = VenueJson.venueId;
+    users.authToken = VenueJson.authToken;
+});
+
 var timerId = setTimeout(function tick() {
     console.log(tickCount);
     if (tickCount % 12 === 0) {

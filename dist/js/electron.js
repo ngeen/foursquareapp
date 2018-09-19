@@ -53,9 +53,9 @@ var electron = (function() {
 
     }
 
-    electron.fillImageToId = (fileName) => {
+    electron.fillImageToId = (fileName, id) => {
         electron.getImageFromFile(fileName, (data) => {
-            document.getElementById("img").src = data;
+            document.getElementById(id).src = data;
         })
 
     }
@@ -77,7 +77,7 @@ var electron = (function() {
 
     electron.explode = function() {
         $( "#menuDiv" ).effect( electron.effects[electron.getRandomInt(12)] , null, 500, electron.callback );
-        electron.fillImageToId(electron.imageFiles[electron.getmenuImgByOrder()]);
+        electron.fillImageToId(electron.imageFiles[electron.getmenuImgByOrder()],"img");
     }
 
     return electron;
